@@ -1,6 +1,6 @@
 //bubble chart
 //seeing if connection is good
-console.log("Test for conneciton -- good")
+console.log("Test for connection -- good")
 
 // Use D3 to read in samples.json from URL
 const sample_data = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"

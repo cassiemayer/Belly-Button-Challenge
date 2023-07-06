@@ -65,8 +65,8 @@ function buildChart(sample) {
       Plotly.newPlot('bubble', dataBubble, layoutBubble);
 
 
-     let dataBarChar = [{
-        x: samplesData.slice(0,10).reverse(), 
+     let dataBarChart = [{
+        x: sample_values.slice(0,10).reverse(), 
         y: otu_ids.slice(0,10).reverse().map(otuID => `OTU ${otuID}`).reverse(),
         text: otu_labels.slice(0,10).reverse(),
         type: 'bar',
@@ -88,19 +88,26 @@ function buildingtheMeta(sample) {
 
        let metadata = data.metadata;
        //console.log(ResultMeta);
+
+       let metadata_array = metadata.filter(sampleObject => sampleObject.id == sample);
        
+
+       let metadataResult = metadata_array[0];
+       console.log(metadataResult);
+
+
        let metaPanel = d3.select("#sample-metadata");
 
        metaPanel.html("");
 
-       for (key in ResultMeta) {
-        metaPanel.append("h5").text(`${key.toUpperCase()}: ${ResultMeta[key]}`);
+       for (key in metadataResult) {
+        metaPanel.append("h5").text(`${key.toUpperCase()}: ${metadataResult[key]}`);
        };
     }
     )};
 
 function optionHasChanged(newSample) {
-    buildingTheCharts(newSample);
+    buildChart(newSample);
     buildingtheMeta(newSample);
 };
 
@@ -124,7 +131,7 @@ function initialize() {
 
     let theFirstSample = sampleNames[0];
         
-    buildingTheCharts(theFirstSample);
+    buildChart(theFirstSample);
         
     buildingtheMeta(theFirstSample);
 }
